@@ -1,0 +1,374 @@
+body {
+    padding: 0;
+    margin: 0;
+    --scrollbar-border-thickness: 3px;
+    --show-double-buttons: none;
+    --scrollbar-height: 0px;
+    --scrollbar-border-radius: 0px;
+    --scrollbar-track-color: #12008932;
+    --scrollbar-thumb-color: #120089d9;
+    --scrollbar-button-color: #0d0064;
+    --scrollbar-corner-color: #ffffff;
+    --scrollbar-border-color: #ffffff;
+}
+
+:is(.browser-Chrome,.browser-Microsoft) .wd-scroll-content {
+    scrollbar-width: unset;
+}
+
+body::-webkit-scrollbar-button {
+    background: var(--scrollbar-button-color, #3F3F46);
+    border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
+    border-radius: var(--scrollbar-border-radius, 4px);
+}
+
+body::-webkit-scrollbar {
+    width: var(--scrollbar-width, 20px);
+    height: var(--scrollbar-height, 20px);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color, #3B82F6);
+    border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
+    border-radius: var(--scrollbar-border-radius, 4px);
+}
+  
+body::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color, #A1A1AA);
+}
+  
+body::-webkit-scrollbar-corner {
+    background: var(--scrollbar-corner-color, #FFFFFF);
+    border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
+    border-radius: var(--scrollbar-border-radius, 4px);
+}
+  
+body::-webkit-scrollbar-button:vertical:start:increment,
+body::-webkit-scrollbar-button:vertical:end:decrement,
+body::-webkit-scrollbar-button:horizontal:start:increment,
+body::-webkit-scrollbar-button:horizontal:end:decrement {
+    display: var(--show-double-buttons, none);
+}
+
+.TopBar {
+    margin: 0;
+    padding: 0;
+    position: static;
+    width: 100vw;
+    height: 13vh;
+    background-color: #011F9C;
+    z-index: 100;
+    align-items: center;
+}
+
+.TopBar a{
+    font-family: 'Waukegan';
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2.5vh;
+    color: white;
+    margin-top: 7vh;
+}
+
+.Logo {
+    display: inline-block;
+    width: 20vw;
+    height: 80%;
+    padding-right: 1vw;
+}
+.Logo img{
+    padding-top: 1.1vh;
+    padding-right: 3vw;
+}
+
+.SearchJob {
+    display: inline-block;
+    width: 9vw;
+    height: 100%;
+    text-align: center; /* Center text horizontally */
+    vertical-align: top; /* Align the inline-block to the top */
+}
+
+.Profile {
+    display: inline-block;
+    width: 8vw;
+    height: 100%;
+    text-align: center; /* Center text horizontally */
+    vertical-align: top; /* Align the inline-block to the top */
+}
+
+.CareerResources {
+    display: inline-block;
+    width: 11vw;
+    height: 100%;
+    text-align: center; /* Center text horizontally */
+    vertical-align: top; /* Align the inline-block to the top */
+}
+
+.Company {
+    display: inline-block;
+    width: 12vw;
+    height: 100%;
+    text-align: center; /* Center text horizontally */
+    vertical-align: top; /* Align the inline-block to the top */
+}
+
+.Header {
+    margin: 0;
+    padding: 0;
+    position: static;
+    width: 100vw;
+    height: 23vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1)), url(../resource/image/Header.png);
+    background-size: cover;
+    background-position-x: center;
+    display: block;
+}
+
+.Header > form {
+    display: block;  /* Stack inputs vertically within each form */
+    margin: 0 auto;  /* Center each element horizontally */
+    width: fit-content;  /* Each element only takes as much space as needed */
+}
+
+form {
+    margin: 0px;
+  }
+  
+  input[type="text"],
+  input[type="submit"] {
+    border-radius: 0.5vw;
+  }
+
+  input[type="text"] {
+    padding: 1vw;
+    margin: 0 0.4vw;
+    border: 0.1vw solid rgba(0, 0, 0, 0.189);
+  }
+
+  input[type="submit"] {
+    padding: 0.7vw;
+    border: none;
+  }
+
+  .dropdownContainer input::placeholder {
+    color: white;
+  }
+  
+  input[type="submit"] {
+    background-color: #011F9C;
+    color: white;
+    cursor: pointer;
+  }
+
+  .Text {
+    padding-top: 3.5vh;
+  }
+
+  .Text, 
+  .Selection {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+  }
+
+  .JobTime,
+  .MinSalary,
+  .MaxSalary {
+    display: inline-block; /* Display these divs as inline blocks */
+    vertical-align: top; /* Align them to the top of the line */
+    margin: 0 1vw;
+    width: 10vw;
+  }
+  
+  .dropdownContainer {
+    padding-top: 2vh;
+    position: relative;
+  }
+  
+  .dropdownInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .dropdownContent {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    display: none;
+  }
+  
+  .dropdownContent label {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdownContent label:hover {
+    background-color: #f0f0f0;
+  }
+  
+  input[type="radio"] {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  /* Show dropdown content when input field is focused */
+  .dropdownContainer:focus-within .dropdownContent {
+    display: block;
+  }
+
+.JobTime {
+    position: relative;
+    width: 200px;
+}
+
+.Salary {
+    position: relative;
+    width: 200px;
+}
+
+.dropdownInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000;
+    background-color: #120089;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px); /* Position dropdown just below input */
+    left: 0;
+    width: 100%;
+    background-color: #f2c8a6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 100; /* Ensure dropdown appears above other content */
+}
+
+.dropdownContent label {
+    display: block;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdownContent label:hover {
+    background-color: #f0f0f0;
+}
+
+.show {
+    display: block;
+}
+
+.JobContainer {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.JobListing {
+    flex: 0 0 40vw;
+    overflow-y: auto;
+    background-color: white;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+}
+
+.JobDetail {
+  display: flex;
+    flex: 1;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 80;
+    align-items: center;
+    justify-content: center;
+}
+
+.JobPost {
+    width: 400px;
+    height: auto; /* Adjust height as needed */
+    margin: 20px; /* Add spacing between job listing cards */
+    overflow: hidden;
+    position: relative; /* Ensure relative positioning for absolute children */
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+  
+.JobPostTop {
+    padding: 20px;
+    background-color: #fff;
+    position: relative; /* Ensure relative positioning for absolute children */
+    transition: transform 0.3s ease-in-out;
+    z-index: 1; /* Set higher z-index to keep this above JobPostBot */
+}
+    
+.JobPostBot {
+    padding: 20px;
+    background-color: #f0f0f0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0; /* Set lower z-index to keep this below JobPostTop */
+    opacity: 0; /* Initially hide JobPostBot */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.JobPost:hover .JobPostTop {
+    transform: translateY(-85%);
+}
+
+.JobPost:hover .JobPostBot {
+    opacity: 1;
+}
+
+.JobPost-Position {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.JobPost-Company {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.JobPost-Address, .JobPost-Salary, .JobPost-Industry{
+    font-size: 0.8rem;
+    color: #888;
+}  
+
+.FootBar {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+
+.Footer {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100vw;
+    height: 10vh;
+    background-color: #011F9C;
+}  
