@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if(isset($_SESSION["type"])){
+    header("Location: index.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,13 +22,17 @@
       <div class="navigation">
         <img src="./images/hero_logo.png" alt="logo" class="logo" />
         <div class="links">
-          <a href="#">Home</a>
-          <a href="#">Companies</a>
-          <a href="#">Find Jobs</a>
+          <a href="index.php">Home</a>
+          <a href="companies.php">Companies</a>
+          <a href="jobsearch.php">Find Jobs</a>
         </div>
       </div>
       <div class="profile">
-        <a href="#">John Doe</a>
+      <?php
+        if(!isset($_SESSION["type"])){
+            echo "<a href='sign-in.php'>Sign In</a>";
+          }
+      ?>
       </div>
     </nav>
     <!-- navigation end -->
@@ -42,7 +52,7 @@
             </div>
             <div class="lowers">
               <input type="submit" value="Sign In" name="signin">
-              <h4>Don't have an account? <span>Sign up!</span></h4>
+              <h4>Don't have an account? <a style="text-decoration: none;" href="sign-up.php"><span>Sign up!</span></a></h4>
           </div>
         </form>
       </div>
@@ -51,7 +61,7 @@
     <!-- footer start -->
     <footer>
       <div class="top-container">
-        <p class="titles">Internship <br />Website</p>
+        <p class="titles">InternLink</p>
         <div class="box-navigation">
           <div class="navigation">
             <p>Internship website</p>
