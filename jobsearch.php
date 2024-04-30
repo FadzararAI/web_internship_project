@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if(!isset($_SESSION["type"])){
+    $_SESSION["type"] = null;
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,28 +27,53 @@
       <div class="navigation">
         <img src="./images/hero_logo.png" alt="logo" class="logo" />
         <div class="links">
-          <a href="#">Home</a>
-          <a href="#">Companies</a>
-          <a href="#">Find Jobs</a>
+          <a href="index.php">Home</a>
+          <a href="companies.php">Companies</a>
+          <?php
+          if(isset($_SESSION["type"])){
+            if(trim($_SESSION["type"]) == 'company'){
+              echo "<a href='jobsearch.php'>View jobs</a>";
+              echo "<a href='add-job.php'>Post a job</a>";
+            }else{
+              echo "<a href='jobsearch.php'>Find Jobs</a>";
+            }
+          }else{
+            echo "<a href='jobsearch.php'>Find Jobs</a>";
+          }
+          ?>
         </div>
       </div>
       <div class="profile">
-        <a href="#">John Doe</a>
+        <?php
+          if(!isset($_SESSION['type'])){
+            echo "<a href='sign-in.php'>Sign In</a>";
+          }
+          if(isset($_SESSION['type'])){
+            if(trim($_SESSION["type"]) == 'company'){
+              echo "<a href='company_profile.php'>Company Profile</a>";
+              echo "<a href='logout.php'>Logout</a>";
+            }elseif(trim($_SESSION['type']) == 'student'){
+              echo "<a href='my_profile.php'>My Profile</a>";
+              echo "<a href='logout.php'>Logout</a>";
+            }
+          }
+        ?>
       </div>
     </nav>
     <!-- navigation end -->
     <!-- search start -->
     <section class="search">
       <div class="search-container">
-        <form action="" class="search-input">
+        <form method="GET" class="search-input">
           <label for="search">
             <img src="./images/icons/search.png" alt="search" />
           </label>
-          <input type="text" name="search" id="search" />
-          <select name="" id="">
-            <option value="" selected>Jakarta</option>
-            <option value="">Bandung</option>
-            <option value="">Surabaya</option>
+          <input type="text" name="jobname" id="search" placeholder="Search for job title.." />
+          <select name="location" id="locs">
+            <option value="" selected>Search based by location..</option>
+            <option value="Jakarta">Jakarta</option>
+            <option value="Bandung">Bandung</option>
+            <option value="Surabaya">Surabaya</option>
           </select>
           <button type="submit" class="btn-submit">Find Job</button>
         </form>
@@ -56,6 +87,11 @@
       <?php
       include './functions/config.php';
       $result = $conn->query("SELECT job_details.*,company.logo_fname FROM job_details LEFT JOIN company ON job_details.company_name = company.name");
+      if(isset($_GET["jobname"])){
+        $job_name = $_GET["jobname"];
+        $job_location = $_GET["location"];
+        $result = $conn->query("SELECT job_details.*,company.logo_fname FROM job_details  LEFT JOIN company ON job_details.company_name = company.name WHERE title LIKE '%$job_name%' AND location LIKE '%$job_location%'");
+      }
       $id_num = "C" . strval(1);
       if($result->num_rows > 0){
           while($row = $result->fetch_assoc()){
@@ -115,7 +151,7 @@
               <p class="location">Jakarta Pusat</p>
               <div class="action">
                 <div class="action-detail">
-                  <button class="apply">Apply Now</button>
+                  <button id="applynow" class="apply">Apply Now</button>
                   <button>
                     <img src="./images/icons/save.png" alt="save" width="30" />
                   </button>
@@ -183,6 +219,10 @@
       // Get all div elements with the class 'clickable-div'
     var clickableDivs = document.querySelectorAll('.list-box');
 
+    var session_type = "<?php echo $_SESSION["type"]; ?>";
+    if(session_type == "company"){
+      document.getElementById("applynow").style.display = "none";
+    }
     // Add click event listener to each div
     clickableDivs.forEach(function(div) {
         div.addEventListener('click', function() {
@@ -225,7 +265,7 @@
     <!-- footer start -->
     <footer>
       <div class="top-container">
-        <p class="titles">Internship <br />Website</p>
+        <p class="titles">InternLink</p>
         <div class="box-navigation">
           <div class="navigation">
             <p>Internship website</p>
