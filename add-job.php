@@ -1,3 +1,11 @@
+<?php
+  session_start();
+  if(isset($_SESSION["type"])){
+    if($_SESSION['type'] != 'company'){
+      header('Location: index.php');
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,13 +25,15 @@
       <div class="navigation">
         <img src="./images/hero_logo.png" alt="logo" class="logo" />
         <div class="links">
-          <a href="#">Home</a>
-          <a href="#">Companies</a>
-          <a href="#">Find Jobs</a>
+          <a href="index.php">Home</a>
+          <a href="companies.php">Companies</a>
+          <a href="jobsearch.php">View Jobs</a>
+          <a href='add-job.php'>Post a job</a>
         </div>
       </div>
       <div class="profile">
-        <a href="#">John Doe</a>
+        <a href="company_profile.php">Company Profile</a>
+        <a href="logout.php">Logout</a>
       </div>
     </nav>
     <!-- navigation end -->
@@ -130,7 +140,7 @@
     <!-- footer start -->
     <footer>
       <div class="top-container">
-        <p class="titles">Internship <br />Website</p>
+        <p class="titles">InternLink</p>
         <div class="box-navigation">
           <div class="navigation">
             <p>Internship website</p>
